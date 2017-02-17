@@ -109,8 +109,8 @@ module FitgemOauth2
     end
 
     # retrieves activity list for the user
-    def activity_list
-      get_call("user/#{user_id}/activities/list.json")
+    def activity_list(params)
+      get_call("user/#{user_id}/activities/list.json", params)
     end
 
     # retrieves activity list in the tcx format

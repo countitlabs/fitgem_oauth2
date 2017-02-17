@@ -53,9 +53,9 @@ module FitgemOauth2
       JSON.parse(response.body)
     end
 
-    def get_call(url)
+    def get_call(url, params = {})
       url = "#{API_VERSION}/#{url}"
-      response = connection.get(url) { |request| set_headers(request) }
+      response = connection.get(url,params) { |request| set_headers(request) }
       parse_response(response)
     end
 
@@ -95,6 +95,7 @@ module FitgemOauth2
           401 => lambda { raise FitgemOauth2::UnauthorizedError },
           403 => lambda { raise FitgemOauth2::ForbiddenError },
           404 => lambda { raise FitgemOauth2::NotFoundError },
+          429 => lambda { raise FitgemOauth2::RateLimitError },
           500..599 => lambda { raise FitgemOauth2::ServerError }
       }
 

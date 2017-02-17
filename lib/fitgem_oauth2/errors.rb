@@ -24,4 +24,8 @@ module FitgemOauth2
 
   class ServerError < StandardError
   end
+
+  class RateLimitError < StandardError
+  end
+
 end

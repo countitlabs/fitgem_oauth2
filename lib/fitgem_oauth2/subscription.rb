@@ -6,7 +6,7 @@ module FitgemOauth2
       if subscriber_id
         headers = { 'X-Fitbit-Subscriber-Id' => subscriber_id }
       end
-      post_call("1/user/-/#{collection_path}/apiSubscriptions/#{subscription_id}.json", headers)
+      post_call("user/-/#{collection_path}/apiSubscriptions/#{subscription_id}.json", headers)
     end
 
     # @return [code, data]
@@ -15,15 +15,15 @@ module FitgemOauth2
       if subscriber_id
         headers = { 'X-Fitbit-Subscriber-Id' => subscriber_id }
       end
-      post_call("1/user/-/#{collection_path}/apiSubscriptions/#{subscription_id}.json", headers)
+      delete_call("user/-/#{collection_path}/apiSubscriptions/#{subscription_id}.json", headers)
     end
 
     # @return data
     def list_subscriptions(collection_path = nil)
       if collection_path
-        get_call("1/user/-/#{collection_path}/apiSubscriptions.json")
+        get_call("user/-/#{collection_path}/apiSubscriptions.json")
       else
-        get_call("1/user/-/apiSubscriptions.json")
+        get_call("user/-/apiSubscriptions.json")
       end
     end
   end

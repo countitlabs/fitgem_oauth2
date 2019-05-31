@@ -22,6 +22,9 @@ module FitgemOauth2
   class NotFoundError < StandardError
   end
 
+  class ConflictError < StandardError
+  end
+
   class ServerError < StandardError
   end
 

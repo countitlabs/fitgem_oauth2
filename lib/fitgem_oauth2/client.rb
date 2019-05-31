@@ -65,7 +65,7 @@ module FitgemOauth2
       parse_response(response)
     end
 
-    def delete_call(url)
+    def delete_call(url, params = {})
       url = "#{API_VERSION}/#{url}"
       response = connection.delete(url) { |request| set_headers(request) }
       parse_response(response)
@@ -95,6 +95,7 @@ module FitgemOauth2
           401 => lambda { raise FitgemOauth2::UnauthorizedError },
           403 => lambda { raise FitgemOauth2::ForbiddenError },
           404 => lambda { raise FitgemOauth2::NotFoundError },
+          409 => lambda { raise FitgemOauth2::ConflictError },
           429 => lambda { raise FitgemOauth2::RateLimitError },
           500..599 => lambda { raise FitgemOauth2::ServerError }
       }
